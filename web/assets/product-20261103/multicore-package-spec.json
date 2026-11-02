@@ -1,0 +1,179 @@
+{
+  "title": "Silicon Canvas — Multicore Die System Overlay",
+  "summary": "只替换既有右die虚拟解释层，改成多计算簇与die级共享资源的系统结构。八簇两列四行属于构图示意；底部双die、八颗HBM与摄影风格保持原图。",
+  "category": "architecture",
+  "verbatim_labels": [],
+  "groups": [
+    {
+      "id": "right_die",
+      "label": "Right-Die System",
+      "parent": "",
+      "origin": "assumed",
+      "evidence": "",
+      "rationale": "对用户要求的整颗多核die采用通用系统级概念投影，不给出实测布局。"
+    },
+    {
+      "id": "clusters",
+      "label": "Compute Clusters",
+      "parent": "right_die",
+      "origin": "assumed",
+      "evidence": "",
+      "rationale": "用八个重复簇的2列4行阵列表达多个并列计算核心，簇数仅供示意。"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "cluster_0",
+      "label": "C0",
+      "kind": "compute",
+      "group": "clusters",
+      "detail": "One of eight equivalent logical Compute Clusters on the SAME right physical die. Do not expand its internal matrix/vector/SFU/local-memory/scheduling blocks. Place left column, row 1 of the four-row array.",
+      "origin": "assumed",
+      "evidence": "",
+      "rationale": "用于多核die级功能解释的通用示意单元，不是实测版图或新增物理die。"
+    },
+    {
+      "id": "cluster_1",
+      "label": "C1",
+      "kind": "compute",
+      "group": "clusters",
+      "detail": "One of eight equivalent logical Compute Clusters on the SAME right physical die. Do not expand its internal matrix/vector/SFU/local-memory/scheduling blocks. Place right column, row 1 of the four-row array.",
+      "origin": "assumed",
+      "evidence": "",
+      "rationale": "用于多核die级功能解释的通用示意单元，不是实测版图或新增物理die。"
+    },
+    {
+      "id": "cluster_2",
+      "label": "C2",
+      "kind": "compute",
+      "group": "clusters",
+      "detail": "One of eight equivalent logical Compute Clusters on the SAME right physical die. Do not expand its internal matrix/vector/SFU/local-memory/scheduling blocks. Place left column, row 2 of the four-row array.",
+      "origin": "assumed",
+      "evidence": "",
+      "rationale": "用于多核die级功能解释的通用示意单元，不是实测版图或新增物理die。"
+    },
+    {
+      "id": "cluster_3",
+      "label": "C3",
+      "kind": "compute",
+      "group": "clusters",
+      "detail": "One of eight equivalent logical Compute Clusters on the SAME right physical die. Do not expand its internal matrix/vector/SFU/local-memory/scheduling blocks. Place right column, row 2 of the four-row array.",
+      "origin": "assumed",
+      "evidence": "",
+      "rationale": "用于多核die级功能解释的通用示意单元，不是实测版图或新增物理die。"
+    },
+    {
+      "id": "cluster_4",
+      "label": "C4",
+      "kind": "compute",
+      "group": "clusters",
+      "detail": "One of eight equivalent logical Compute Clusters on the SAME right physical die. Do not expand its internal matrix/vector/SFU/local-memory/scheduling blocks. Place left column, row 3 of the four-row array.",
+      "origin": "assumed",
+      "evidence": "",
+      "rationale": "用于多核die级功能解释的通用示意单元，不是实测版图或新增物理die。"
+    },
+    {
+      "id": "cluster_5",
+      "label": "C5",
+      "kind": "compute",
+      "group": "clusters",
+      "detail": "One of eight equivalent logical Compute Clusters on the SAME right physical die. Do not expand its internal matrix/vector/SFU/local-memory/scheduling blocks. Place right column, row 3 of the four-row array.",
+      "origin": "assumed",
+      "evidence": "",
+      "rationale": "用于多核die级功能解释的通用示意单元，不是实测版图或新增物理die。"
+    },
+    {
+      "id": "cluster_6",
+      "label": "C6",
+      "kind": "compute",
+      "group": "clusters",
+      "detail": "One of eight equivalent logical Compute Clusters on the SAME right physical die. Do not expand its internal matrix/vector/SFU/local-memory/scheduling blocks. Place left column, row 4 of the four-row array.",
+      "origin": "assumed",
+      "evidence": "",
+      "rationale": "用于多核die级功能解释的通用示意单元，不是实测版图或新增物理die。"
+    },
+    {
+      "id": "cluster_7",
+      "label": "C7",
+      "kind": "compute",
+      "group": "clusters",
+      "detail": "One of eight equivalent logical Compute Clusters on the SAME right physical die. Do not expand its internal matrix/vector/SFU/local-memory/scheduling blocks. Place right column, row 4 of the four-row array.",
+      "origin": "assumed",
+      "evidence": "",
+      "rationale": "用于多核die级功能解释的通用示意单元，不是实测版图或新增物理die。"
+    },
+    {
+      "id": "l2",
+      "label": "Shared L2 Cache",
+      "kind": "memory",
+      "group": "right_die",
+      "detail": "One die-wide common cache band serving all Compute Clusters; not a per-core Local SRAM region.",
+      "origin": "assumed",
+      "evidence": "",
+      "rationale": "用于多核die级功能解释的通用示意单元，不是实测版图或新增物理die。"
+    },
+    {
+      "id": "noc",
+      "label": "NoC / Fabric",
+      "kind": "io",
+      "group": "right_die",
+      "detail": "One die-wide shared fabric expressed by restrained thin channels/spine serving the repeated clusters and shared resources; no invented detailed router topology or serial pipeline.",
+      "origin": "assumed",
+      "evidence": "",
+      "rationale": "用于多核die级功能解释的通用示意单元，不是实测版图或新增物理die。"
+    },
+    {
+      "id": "mem_ctrl",
+      "label": "HBM Controllers",
+      "kind": "io",
+      "group": "right_die",
+      "detail": "Die-wide memory-interface region on the outer RIGHT die edge facing the package's right-side HBM packages; no invented channel count or bandwidth.",
+      "origin": "assumed",
+      "evidence": "",
+      "rationale": "用于多核die级功能解释的通用示意单元，不是实测版图或新增物理die。"
+    },
+    {
+      "id": "host_io",
+      "label": "Host I/O",
+      "kind": "io",
+      "group": "right_die",
+      "detail": "Compact die-perimeter host interface region, separate from core internals.",
+      "origin": "assumed",
+      "evidence": "",
+      "rationale": "用于多核die级功能解释的通用示意单元，不是实测版图或新增物理die。"
+    },
+    {
+      "id": "sys_ctrl",
+      "label": "System Control",
+      "kind": "control",
+      "group": "right_die",
+      "detail": "Compact die-wide management/control region on the perimeter, not an instruction scheduler occupying the full die.",
+      "origin": "assumed",
+      "evidence": "",
+      "rationale": "用于多核die级功能解释的通用示意单元，不是实测版图或新增物理die。"
+    },
+    {
+      "id": "d2d",
+      "label": "Die-to-Die Link",
+      "kind": "io",
+      "group": "right_die",
+      "detail": "Narrow region on the LEFT edge of the right die, adjacent to the seam with the neighboring physical die.",
+      "origin": "assumed",
+      "evidence": "",
+      "rationale": "用于多核die级功能解释的通用示意单元，不是实测版图或新增物理die。"
+    }
+  ],
+  "edges": [],
+  "layout": "The complete new view is a single thin raised semi-transparent die-level logical map above the EXISTING right physical die. Do not change the reference physical photograph. The clusters group occupies most of the map with C0/C1, C2/C3, C4/C5, C6/C7 paired across four rows. NoC / Fabric forms fine shared channels/spine between or alongside the cluster array; do not draw a serial processing chain. One Shared L2 Cache band serves the complete array. HBM Controllers occupy the outer RIGHT edge facing existing external HBM packages. Die-to-Die Link occupies the inner LEFT edge facing the neighboring physical die. Host I/O and System Control are compact perimeter regions. Keep the current elevated plane, conceptual exploded separation, exact footprint and corner projection alignment. All 14 nodes are logical subregions of one physical die; do not render 14 chiplets. Print only the overlay region labels and retain the existing physical Silicon Canvas engraving; preserve all remaining pictured hardware unlabelled and assembled.",
+  "steps": [],
+  "annotations": [],
+  "assumptions": [
+    "八个Compute Clusters以及共享资源名称为die级系统示意补全，数量、面积占比与摆放不代表真实芯片参数。",
+    "参考图中两个物理计算裸片、八个HBM封装、基板、金属框、材质与光照保持不变，当前只编辑其右die上的虚拟解释层。"
+  ],
+  "questions": [],
+  "checks": [
+    "主视觉是否明确表现多个并列计算簇，且L2/Fabric/内存与I/O属于全die层级。",
+    "虚拟功能区是否仍属于同一右die，是否保留原图材质与物理封装。"
+  ]
+}

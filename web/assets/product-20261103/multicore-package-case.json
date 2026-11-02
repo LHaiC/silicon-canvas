@@ -1,0 +1,22 @@
+{
+  "id": "multicore-package",
+  "title": "多核芯片与功能分区",
+  "image": "multicore-package.png",
+  "prompt": "multicore-package-prompt.txt",
+  "source_spec": "multicore-package-spec.json",
+  "origin": "imagegen",
+  "workflow": "Silicon Canvas prepare/compile and built-in Image Gen edit",
+  "artifact_id": "08d9568f38ac47adb484817508a8397b",
+  "visible_content": [
+    "两个物理计算裸片与八个HBM封装组成产品主体。",
+    "右die的半透明功能层用C0–C7计算簇、Shared L2 Cache、NoC / Fabric、HBM Controllers、Host I/O、System Control与Die-to-Die Link表达die级系统。"
+  ],
+  "limitations": [
+    "功能区、簇数、面积与位置为概念示意，不代表实测版图或真实产品规格。",
+    "半透明解释层对应同一右侧裸片，没有增加物理die。"
+  ],
+  "dimensions": {
+    "width": 1672,
+    "height": 941
+  }
+}
