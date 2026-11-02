@@ -7,7 +7,7 @@ Codex 的推荐入口是 **Silicon Canvas 插件**，它一起安装绘图 Skill
 需要 Python 3.11+，且命令名 `python` 可用：
 
 ```sh
-codex plugin marketplace add jiale-wangOwO/silicon-canvas
+codex plugin marketplace add du-du-wang/silicon-canvas
 codex plugin add silicon-canvas@silicon-canvas
 ```
 

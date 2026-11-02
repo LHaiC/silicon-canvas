@@ -17,7 +17,7 @@ import time
 from urllib.request import Request, urlopen
 import zipfile
 
-REPOSITORY = "https://github.com/jiale-wangOwO/silicon-canvas"
+REPOSITORY = "https://github.com/du-du-wang/silicon-canvas"
 PLUGIN_ROOT = Path(__file__).resolve().parents[1]
 READY = "plugin-runtime-ready.json"
 

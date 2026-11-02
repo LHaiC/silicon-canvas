@@ -23,7 +23,7 @@ First public release of Silicon Canvas.
 - A focused workspace with automatic visual choices and optional customization previews.
 - Browser-direct DeepSeek or compatible model connection; API keys stay in page memory.
 - Sixteen selected works in a continuous carousel, and a matching Agent setup guide.
-- GitHub Pages deployment at <https://jiale-wangOwO.github.io/silicon-canvas/>.
+- GitHub Pages deployment at <https://du-du-wang.github.io/silicon-canvas/>.
 
 ### Distribution
 

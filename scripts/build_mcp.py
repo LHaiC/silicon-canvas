@@ -9,7 +9,7 @@ import sys
 import zipfile
 
 ROOT = Path(__file__).resolve().parent.parent
-REPOSITORY = "https://github.com/jiale-wangOwO/silicon-canvas"
+REPOSITORY = "https://github.com/du-du-wang/silicon-canvas"
 PORTABLE_DOCUMENTS = (
     "LICENSE", "README.md", "SECURITY.md", "CONTRIBUTING.md", ".env.example",
     "docs/mcp.md", "docs/web.md", "docs/privacy.md", "docs/third-party.md",
@@ -34,7 +34,7 @@ def copy_documentation(portable):
         relative = destination.relative_to(ROOT).as_posix()
         if relative in included:
             return match.group(0)
-        base = ("https://raw.githubusercontent.com/jiale-wangOwO/silicon-canvas/main/"
+        base = ("https://raw.githubusercontent.com/du-du-wang/silicon-canvas/main/"
                 if prefix.startswith("!") or prefix.lower().startswith("<img") else REPOSITORY + "/blob/main/")
         return prefix + base + relative + (separator + anchor if separator else "") + suffix
 

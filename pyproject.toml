@@ -13,10 +13,10 @@ authors = [{name = "Jiale Wang"}]
 dependencies = ["Pillow==12.2.0", "mcp==2.3.0"]
 
 [project.urls]
-Homepage = "https://jiale-wangOwO.github.io/silicon-canvas/"
-Repository = "https://github.com/jiale-wangOwO/silicon-canvas"
-Documentation = "https://github.com/jiale-wangOwO/silicon-canvas/tree/main/docs"
-Issues = "https://github.com/jiale-wangOwO/silicon-canvas/issues"
+Homepage = "https://du-du-wang.github.io/silicon-canvas/"
+Repository = "https://github.com/du-du-wang/silicon-canvas"
+Documentation = "https://github.com/du-du-wang/silicon-canvas/tree/main/docs"
+Issues = "https://github.com/du-du-wang/silicon-canvas/issues"
 
 [project.optional-dependencies]
 dev = ["build>=1.2,<2", "playwright>=1.50,<2", "pyinstaller>=6.10,<7"]

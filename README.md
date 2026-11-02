@@ -7,7 +7,7 @@
 <p align="center"><strong>看见架构，清晰呈现</strong></p>
 
 <p align="center">
-  <a href="https://jiale-wangOwO.github.io/silicon-canvas/">网页演示版</a> ·
+  <a href="https://du-du-wang.github.io/silicon-canvas/">网页演示版</a> ·
   <a href="#让-ai-助手帮你安装">安装 Codex 插件</a> ·
   <a href="docs/mcp.md">接入指南</a>
 </p>
@@ -26,14 +26,14 @@ Silicon Canvas 帮助 AI 更稳定地生成结构清晰、布局有序、风格�
 | --- | --- | --- |
 | [![SoC 计算、存储、管理与 I/O 的功能架构示意](web/assets/render-examples/functional-soc.png)](web/assets/render-examples/functional-soc.png) | [![英文 FFT 算法数据流，展示重排与三级蝶形处理](web/assets/generalization-20261018/06-signal-fft.png)](web/assets/generalization-20261018/06-signal-fft.png) | [![交换芯片、光引擎与光纤连接的光电共封装概念渲染](web/assets/aesthetic-20261022/08-optical-io.png)](web/assets/aesthetic-20261022/08-optical-io.png) |
 
-更多作品见 [网页演示版的精选展示](https://jiale-wangOwO.github.io/silicon-canvas/#showcaseTitle)。
+更多作品见 [网页演示版的精选展示](https://du-du-wang.github.io/silicon-canvas/#showcaseTitle)。
 
 ## 让 AI 助手帮你安装
 
 把下面这段话发给你的 AI 助手，让它帮你完成安装：
 
 ```text
-Hi! Please install https://github.com/jiale-wangOwO/silicon-canvas for me. In Codex, install it as a plugin so it appears in the plugin list; in another agent, set up its MCP server. Verify the tools work, then give me a short list of how to use it and one example request.
+Hi! Please install https://github.com/du-du-wang/silicon-canvas for me. In Codex, install it as a plugin so it appears in the plugin list; in another agent, set up its MCP server. Verify the tools work, then give me a short list of how to use it and one example request.
 ```
 
 ## 安装 Codex 插件
@@ -43,7 +43,7 @@ Codex 用户推荐安装插件：它将绘图 Skill、MCP 工具与 Silicon Canv
 需要 **Python 3.11+**，并能在终端运行 `python`。使用支持插件的 Codex：
 
 ```sh
-codex plugin marketplace add jiale-wangOwO/silicon-canvas
+codex plugin marketplace add du-du-wang/silicon-canvas
 codex plugin add silicon-canvas@silicon-canvas
 ```
 
@@ -55,7 +55,7 @@ codex plugin add silicon-canvas@silicon-canvas
 
 ### 下载发布包
 
-从 [v0.7.0 Release](https://github.com/jiale-wangOwO/silicon-canvas/releases/latest) 获取安装包。Windows 用户可下载 `silicon-canvas-mcp-windows-x64.zip`，解压完整目录，无需另装 Python。按包内 `MCP-CONFIG.json` 配置宿主，将 command 替换为 `silicon-canvas-mcp.exe` 的绝对路径，并保留相邻的 `_internal` 目录。
+从 [v0.7.0 Release](https://github.com/du-du-wang/silicon-canvas/releases/latest) 获取安装包。Windows 用户可下载 `silicon-canvas-mcp-windows-x64.zip`，解压完整目录，无需另装 Python。按包内 `MCP-CONFIG.json` 配置宿主，将 command 替换为 `silicon-canvas-mcp.exe` 的绝对路径，并保留相邻的 `_internal` 目录。
 
 macOS、Linux 或需要 Python 环境的用户，可以使用 Release 中的 wheel 或从源码安装。
 
@@ -64,7 +64,7 @@ macOS、Linux 或需要 Python 环境的用户，可以使用 Release 中的 whe
 需要 **Python 3.11+**。先获取源码：
 
 ```sh
-git clone https://github.com/jiale-wangOwO/silicon-canvas.git
+git clone https://github.com/du-du-wang/silicon-canvas.git
 cd silicon-canvas
 ```
 
@@ -115,7 +115,7 @@ bash scripts/install-mcp.sh .
 
 ## 网页演示版
 
-打开 [网页演示版](https://jiale-wangOwO.github.io/silicon-canvas/)，连接自己的 DeepSeek 或兼容服务，描述需求并生成提示词，再交给图片工具。形式、用途和配色等默认自动安排，需要时展开“自定义”。希望由 Agent 连续完成绘图与反馈调整，请使用 MCP。
+打开 [网页演示版](https://du-du-wang.github.io/silicon-canvas/)，连接自己的 DeepSeek 或兼容服务，描述需求并生成提示词，再交给图片工具。形式、用途和配色等默认自动安排，需要时展开“自定义”。希望由 Agent 连续完成绘图与反馈调整，请使用 MCP。
 
 ![Silicon Canvas 网页工作台](docs/assets/workspace.png)
 
