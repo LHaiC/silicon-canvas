@@ -286,12 +286,12 @@
       {
         "shape": "landscape",
         "origin": "imagegen",
-        "source": "assets/scenario-gallery-20261017/08-accelerator-product-hero.png",
-        "title": "暗色产品主视觉",
+        "source": "assets/product-20261103/multicore-package.png",
+        "title": "多核芯片与功能分区",
         "dark": true,
-        "alt": "暗色背景上的金属芯片封装商业主视觉",
+        "alt": "双裸片与 HBM 封装，右侧通过半透明悬浮功能层展示多计算簇、共享缓存和片上互连",
         "category": "产品与封装",
-        "description": "暗色背景上的金属芯片封装主视觉，用克制的光线和材质层次呈现产品概念。"
+        "description": "双裸片与 HBM 构成封装主体，右侧以抬升的半透明功能层展示多计算簇、共享 L2、片上互连及内存与 I/O 资源。分区与布局为概念示意。"
       }
     ]
   ]
