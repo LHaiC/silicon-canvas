@@ -7,16 +7,14 @@
 <p align="center"><strong>看见架构，清晰呈现</strong></p>
 
 <p align="center">
-  <a href="https://du-du-wang.github.io/silicon-canvas/">网页演示版</a> ·
-  <a href="#让-ai-助手帮你安装">安装 Codex 插件</a> ·
-  <a href="docs/mcp.md">接入指南</a>
+  <a href="https://du-du-wang.github.io/silicon-canvas/">网页演示</a>
 </p>
 
 **让 AI 画出好看的架构图，更画出清楚的设计。**
 
 Silicon Canvas 帮助 AI 更稳定地生成结构清晰、布局有序、风格协调的专业芯片图，适合技术文档、论文、架构评审与产品展示。
 
-让 AI 画图少一点碰运气，减少反复试提示词的时间。从系统架构、算法数据流到产品渲染，都可以描述需求、生成图片，再通过自然反馈继续打磨。你可以用中文描述，新图默认使用英文标签。
+让 AI 画图少一点碰运气，减少反复试提示词的时间。从系统架构、算法数据流到产品渲染，都可以描述需求、生成图片，再通过自然反馈继续打磨。
 
 ## 实际作品
 
@@ -24,9 +22,9 @@ Silicon Canvas 帮助 AI 更稳定地生成结构清晰、布局有序、风格�
 
 | SoC 架构概览 | 算法数据流 | 产品渲染 |
 | --- | --- | --- |
-| [![SoC 计算、存储、管理与 I/O 的功能架构示意](web/assets/render-examples/functional-soc.png)](web/assets/render-examples/functional-soc.png) | [![英文 FFT 算法数据流，展示重排与三级蝶形处理](web/assets/generalization-20261018/06-signal-fft.png)](web/assets/generalization-20261018/06-signal-fft.png) | [![交换芯片、光引擎与光纤连接的光电共封装概念渲染](web/assets/aesthetic-20261022/08-optical-io.png)](web/assets/aesthetic-20261022/08-optical-io.png) |
+| [![SoC 平面架构图，展示计算簇、共享资源、存储接口与主机 I/O](docs/assets/soc-architecture.png)](docs/assets/soc-architecture.png) | [![Attention 数据流，展示 Q、K 转置、分数矩阵、Softmax 与 V 汇合后的输出](docs/assets/attention-dataflow.png)](docs/assets/attention-dataflow.png) | [![SoC 产品概念渲染，展示计算、存储、管理与 I/O 功能分区及外部设备](web/assets/render-examples/functional-soc.png)](web/assets/render-examples/functional-soc.png) |
 
-更多作品见 [网页演示版的精选展示](https://du-du-wang.github.io/silicon-canvas/#showcaseTitle)。
+更多作品见 [网页演示](https://du-du-wang.github.io/silicon-canvas/#showcaseTitle)。
 
 ## 让 AI 助手帮你安装
 
