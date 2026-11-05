@@ -1903,10 +1903,11 @@ def build(spec, figure, settings):
     if not nodes:
         return None
     target_width = float(contract.get("target_width_mm", 160))
-    if contract.get("scene_id") == "concept":
+    explicit_width = bool(contract.get("explicit_target_width"))
+    if contract.get("scene_id") == "concept" and not explicit_width:
         target_width = max(240, target_width)
         contract["target_width_mm"] = target_width
-    elif contract.get("scene_id") == "flow":
+    elif contract.get("scene_id") == "flow" and not explicit_width:
         target_width = max(200, target_width)
         contract["target_width_mm"] = target_width
     body_pt, signal_pt = float(contract.get("body_pt", 9)), float(contract.get("signal_pt", 8.5))

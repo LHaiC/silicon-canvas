@@ -183,3 +183,9 @@ def render(result,figure):
         draw.text((x,y),groups[figure['main_group']]['label'],font=small,fill=ink)
     output=io.BytesIO();canvas.save(output,format='PNG')
     return output.getvalue()
+
+
+def render_svg(result, figure):
+    """The same measured geometry as SVG bytes, or None for prompt-only views."""
+    from . import svg_backend
+    return svg_backend.render(result, figure)

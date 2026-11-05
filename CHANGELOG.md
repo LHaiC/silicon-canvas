@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Fork: vector output
+
+- `svg_backend` renders the measured layout as SVG through the existing drawing calls; no layout, routing or typography logic is duplicated.
+- `target_width_mm` and `body_pt` settings override scene defaults so a figure can be measured for a real document column (for example an 85 mm single column).
+- MCP responses expose `vector_figure`, artifacts store `figure.svg`, and export bundles include it.
+- `scripts/export_svg_pdf.sh` converts a figure to an outlined vector PDF (text as paths), matching the paper figure pipeline.
+
 - Codex plugin with a discoverable marketplace entry, Silicon Canvas branding, the drawing workflow Skill, and its bundled MCP launcher.
 - Isolated, pinned backend setup on first use; existing clients can continue using the standalone MCP installation.
 - Plugin installation instructions in the README and Agent setup page.

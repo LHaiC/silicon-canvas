@@ -57,6 +57,9 @@ def create_server(directory: Path | None = None) -> MCPServer:
             guide = layout_guide.render(result, item)
             if guide:
                 store.write(artifact_id, store.figure_name(figure_id, "guide.png"), guide)
+            vector = layout_guide.render_svg(result, item)
+            if vector:
+                store.write(artifact_id, store.figure_name(figure_id, "figure.svg"), vector)
             store.write(artifact_id, store.figure_name(figure_id, "prompt.txt"), item["prompt"].encode("utf-8"))
             store.write(artifact_id, store.figure_name(figure_id, "caption.txt"), item["caption"].encode("utf-8"))
             store.write(artifact_id, store.figure_name(figure_id, "review.json"), json.dumps(item.get("review_task", {}), ensure_ascii=False).encode("utf-8"))
@@ -67,6 +70,8 @@ def create_server(directory: Path | None = None) -> MCPServer:
         selected_id = selected["id"]
         guide_path = store.path(artifact_id, store.figure_name(selected_id, "guide.png"))
         guide_uri = store.uri(artifact_id, "figures/" + selected_id + "/guide.png") if guide_path.is_file() else None
+        svg_path = store.path(artifact_id, store.figure_name(selected_id, "figure.svg"))
+        svg_uri = store.uri(artifact_id, "figures/" + selected_id + "/figure.svg") if svg_path.is_file() else None
         data = {
             "artifact_id": artifact_id,
             "source_hash": reading_plan.source_hash(result["spec"]),
@@ -95,11 +100,19 @@ def create_server(directory: Path | None = None) -> MCPServer:
             },
             "guide_uri": guide_uri,
             "guide_path": str(guide_path) if guide_uri else None,
+            "vector_figure": {"uri": svg_uri, "path": str(svg_path) if svg_uri else None,
+                              "role": "final_vector" if svg_uri else None,
+                              "note": ("Exact SVG of this view with the same measured geometry as the guide. "
+                                       "Edit or embed it directly; no image generator is required." if svg_uri else
+                                       "This view has no measured geometry, so only a prompt is available.")},
             "result_uri": store.uri(artifact_id, "result.json"),
             "review_uri": store.uri(artifact_id, "figures/" + selected_id + "/review.json"),
             "review_status": "not_reviewed",
             "next_step": "Use Image Gen with the selected prompt and target guide. Review the actual image using silicon_prepare_review; preflight does not certify it.",
         }
+        if svg_uri:
+            data["next_step"] = ("This view is already vector artwork: use vector_figure directly, no image generator is required. "
+                                 + data["next_step"])
         if selected.get("algorithm_flow_plan"):
             data["preflight"]["meaning"] = "Source-backed mathematical roles and dependency placement only. This algorithm view intentionally has no hardware target guide; the actual Image Gen bitmap has not been reviewed."
             data["next_step"] = "Use Image Gen with the selected algorithm prompt alone. Follow algorithm_flow_plan for distinct operands, tensor/operator shapes, branches, source cycles and residency. No hardware target guide is required. Review the actual bitmap using silicon_prepare_review."
@@ -223,6 +236,16 @@ def create_server(directory: Path | None = None) -> MCPServer:
             raise ValueError("This view has no controlled target guide.")
         return path.read_bytes()
 
+    @mcp.resource("silicon://artifacts/{artifact_id}/figures/{figure_id}/figure.svg", mime_type="image/svg+xml")
+    def svg_resource(artifact_id: str, figure_id: str) -> bytes:
+        """Vector figure with the same measured geometry as the guide, for direct embedding."""
+        result = store.read(artifact_id, "compiled")
+        figure(result, figure_id)
+        path = store.path(artifact_id, store.figure_name(figure_id, "figure.svg"))
+        if not path.is_file():
+            raise ValueError("This view has no measured geometry.")
+        return path.read_bytes()
+
     @mcp.resource("silicon://artifacts/{artifact_id}/figures/{figure_id}/brief.json", mime_type="application/json")
     def figure_resource(artifact_id: str, figure_id: str) -> dict[str, Any]:
         """One saved view's prompt, caption and target guide, without recompiling or loading every view."""
@@ -245,6 +268,8 @@ def create_server(directory: Path | None = None) -> MCPServer:
             "guide_optional": bool(selected.get("render_brief") or selected.get("algorithm_flow_plan")),
             "guide_path": str(guide_path) if guide_path.is_file() else None,
             "guide_uri": store.uri(artifact_id, "figures/" + figure_id + "/guide.png") if guide_path.is_file() else None,
+            "svg_path": str(store.path(artifact_id, store.figure_name(figure_id, "figure.svg")))
+                        if store.path(artifact_id, store.figure_name(figure_id, "figure.svg")).is_file() else None,
             "review_uri": store.uri(artifact_id, "figures/" + figure_id + "/review.json"),
             "review_status": "not_reviewed",
         }

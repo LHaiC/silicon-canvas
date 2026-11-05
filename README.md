@@ -111,6 +111,17 @@ bash scripts/install-mcp.sh .
 
 成图中的文字、箭头和数量仍需查看与调整，概念渲染也不替代真实版图或制造资料。更多能力与适用范围见 [表达方式](docs/scenes.md) 和 [验证说明](docs/validation.md)。
 
+## 矢量输出（本 fork 新增）
+
+工程图可以直接输出 SVG，不需要图片生成模型：布局、布线与字号测量与 `guide.png` 完全相同，只是绘图后端换成矢量。
+
+```bash
+python -m silicon_canvas.svg_backend examples/soc.json out/figure.svg --width-mm 85 --body-pt 6
+./scripts/export_svg_pdf.sh out/figure.svg out/pdf_outlined/figure.pdf      # 转曲 PDF
+```
+
+`target_width_mm` / `body_pt` 覆盖场景默认值；放不下时编译退回 `text-only` 而不是压缩字号。MCP 返回 `vector_figure`，导出 ZIP 内含 `figure.svg`。细节与适用范围见 [矢量输出](docs/svg.md)。
+
 ## 网页演示版
 
 打开 [网页演示版](https://du-du-wang.github.io/silicon-canvas/)，连接自己的 DeepSeek 或兼容服务，描述需求并生成提示词，再交给图片工具。形式、用途和配色等默认自动安排，需要时展开“自定义”。希望由 Agent 连续完成绘图与反馈调整，请使用 MCP。

@@ -47,6 +47,10 @@ def build(result,figure_id=''):
                 archive.writestr(folder+'figure-strategy.json',json.dumps(f['figure_strategy'],ensure_ascii=False,indent=2))
             if f.get('behavior_plan'):
                 archive.writestr(folder+'semantic-plan.json',json.dumps(f['behavior_plan'],ensure_ascii=False,indent=2))
+            vector=layout_guide.render_svg(result,f)
+            if vector:
+                archive.writestr(folder+'figure.svg',vector)
+                f['vector_figure']=folder+'figure.svg'
             guide=layout_guide.render(result,f)
             if guide:
                 guide_name = 'composition-guide.png' if f.get('representation') in {'product_render', 'system_illustration'} else 'layout-guide.png'

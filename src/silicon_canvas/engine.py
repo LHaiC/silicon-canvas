@@ -200,6 +200,14 @@ def normalize_settings(payload):
         labels = "\n".join(_text(v, "精确标签", 120, False) for v in _list(labels, "精确标签", 50))
     settings["labels"] = _text(labels, "精确标签", 5000)
     settings["notes"] = _text(payload.get("notes", ""), "补充要求", 5000)
+    # Physical figure width and body type size for the target document column.
+    # Explicit values override the scene profile; everything else stays derived.
+    for key, low, high in (("target_width_mm", 40, 400), ("body_pt", 6, 16)):
+        if key in payload:
+            value = payload[key]
+            if isinstance(value, bool) or not isinstance(value, (int, float)) or not low <= value <= high:
+                raise ValueError(f"{key} 必须是 {low} 到 {high} 之间的数字。")
+            settings[key] = float(value)
     if "automatic_visual_settings" in payload:
         settings["automatic_visual_settings"] = auto_settings.saved_record(payload["automatic_visual_settings"], VISUAL_CHOICES)
     return settings

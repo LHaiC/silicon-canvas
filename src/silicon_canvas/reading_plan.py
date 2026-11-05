@@ -690,6 +690,18 @@ def build(spec, settings, legacy_plan, description=""):
                 contract.update(visual_language=scene_profiles.REPRESENTATIONS[representation]["visual_language"],
                                 granularity="whole product; selective context and exact technical companions",
                                 annex_policy="Engineering internals are retained in separate technical diagrams; a product surface is not a logical graph.")
+    if settings.get("target_width_mm") or settings.get("body_pt"):
+        # The target document column is a user fact, not a scene default.
+        for f in figures:
+            if not f.get("primary"):
+                continue
+            contract = f["design_contract"]
+            if settings.get("target_width_mm"):
+                contract["target_width_mm"] = settings["target_width_mm"]
+                contract["explicit_target_width"] = True
+            if settings.get("body_pt"):
+                contract["body_pt"] = settings["body_pt"]
+                contract["signal_pt"] = max(6.0, settings["body_pt"] - .5)
     if settings.get("style", "paper") in {"paper", "monochrome"}:
         for f in figures:
             f["design_contract"]["symbol_profile"] = "ink-header" if settings.get("style") == "monochrome" else "plain"

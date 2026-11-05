@@ -82,7 +82,7 @@ class ArtifactStore:
     def figure_name(figure_id: str, suffix: str) -> str:
         if not isinstance(figure_id, str) or not FIGURE.fullmatch(figure_id):
             raise ValueError("Invalid figure ID.")
-        if suffix not in {"guide.png", "review.json", "prompt.txt", "caption.txt"}:
+        if suffix not in {"guide.png", "figure.svg", "review.json", "prompt.txt", "caption.txt"}:
             raise ValueError("Invalid figure asset.")
         return figure_id + "." + suffix
 

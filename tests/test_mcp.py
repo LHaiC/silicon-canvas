@@ -178,8 +178,11 @@ class MCPTests(unittest.IsolatedAsyncioTestCase):
                     self.assertEqual(json.loads(archive.read("figures/" + data["selected_figure_id"] + "/figure-strategy.json")), data["figure_strategy"])
                     self.assertTrue(any(name.endswith("review-manifest.json") for name in archive.namelist()))
                     self.assertEqual(archive.read("figures/" + data["selected_figure_id"] + "/layout-guide.png"), guide)
+                    self.assertIn("figures/" + data["selected_figure_id"] + "/figure.svg", archive.namelist())
+                self.assertIn("final_vector", json.dumps(data["vector_figure"]))
                 templates = (await client.list_resource_templates()).resource_templates
-                self.assertEqual(len(templates), 5)
+                self.assertEqual(len(templates), 6)
+                self.assertTrue(any("figure.svg" in str(r.uri_template) for r in templates))
                 self.assertIn("silicon://catalog", [str(r.uri) for r in (await client.list_resources()).resources])
 
     async def test_malformed_and_unowned_inputs_return_tool_errors(self):
