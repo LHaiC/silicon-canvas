@@ -35,7 +35,7 @@ def small_spec():
 
 class SvgBackendTests(unittest.TestCase):
     def test_svg_reuses_the_guide_geometry(self):
-        result = compile_spec(small_spec(), target_width_mm=85, body_pt=8)
+        result = compile_spec(small_spec(), target_width_mm=85, body_pt=8, svg_title=False)
         figure = selected(result)
         png = layout_guide.render(result, figure)
         svg = layout_guide.render_svg(result, figure)
@@ -51,6 +51,17 @@ class SvgBackendTests(unittest.TestCase):
         self.assertEqual(list(root.iter(SVG + "image")), [])
         for node in figure["structure_layout"]["macro_nodes"]:
             self.assertIn(" ".join(node["label"].split()), " ".join(text.split()))
+
+    def test_themed_render_adds_a_heading_band(self):
+        result = compile_spec(small_spec(), target_width_mm=85, body_pt=8)
+        figure = selected(result)
+        svg = layout_guide.render_svg(result, figure)
+        root = ET.fromstring(svg)
+        scene = figure["layout_scene"]
+        self.assertEqual(root.get("width"), "85mm")
+        self.assertGreater(float(root.get("viewBox").split()[3]), scene["height"])
+        text = " ".join("".join(element.itertext()) for element in root.iter(SVG + "text"))
+        self.assertIn("Buffered Compute Path", text)
 
     def test_physical_width_follows_the_typography_contract(self):
         result = compile_spec(small_spec(), target_width_mm=85, body_pt=8)

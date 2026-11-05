@@ -208,6 +208,10 @@ def normalize_settings(payload):
             if isinstance(value, bool) or not isinstance(value, (int, float)) or not low <= value <= high:
                 raise ValueError(f"{key} 必须是 {low} 到 {high} 之间的数字。")
             settings[key] = float(value)
+    if "svg_title" in payload:
+        if not isinstance(payload["svg_title"], bool):
+            raise ValueError("svg_title 必须是布尔值。")
+        settings["svg_title"] = payload["svg_title"]
     if "automatic_visual_settings" in payload:
         settings["automatic_visual_settings"] = auto_settings.saved_record(payload["automatic_visual_settings"], VISUAL_CHOICES)
     return settings

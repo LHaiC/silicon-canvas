@@ -186,6 +186,10 @@ def render(result,figure):
 
 
 def render_svg(result, figure):
-    """The same measured geometry as SVG bytes, or None for prompt-only views."""
-    from . import svg_backend
-    return svg_backend.render(result, figure)
+    """The same measured geometry as SVG bytes, or None for prompt-only views.
+
+    Publication layouts use the themed renderer; other grammars fall back to
+    the plain vector backend, which mirrors the guide plate exactly.
+    """
+    from . import svg_render, svg_backend
+    return svg_render.render(result, figure) or svg_backend.render(result, figure)
