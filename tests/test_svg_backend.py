@@ -53,7 +53,7 @@ class SvgBackendTests(unittest.TestCase):
             self.assertIn(" ".join(node["label"].split()), " ".join(text.split()))
 
     def test_themed_render_adds_a_heading_band(self):
-        result = compile_spec(small_spec(), target_width_mm=85, body_pt=8)
+        result = compile_spec(small_spec(), target_width_mm=85, body_pt=8, svg_title=True)
         figure = selected(result)
         svg = layout_guide.render_svg(result, figure)
         root = ET.fromstring(svg)
